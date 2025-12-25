@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="my">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The symbol of my love</title>
+  <style>
+    /* 🎨 Global Variables & Mobile Base Styling */
+    :root {
+      --bg-color: #0b0010;
+      --accent: #ff8fb0;
+      --card-size: 150px; /* Base image size in carousel */
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at 50% 50%, #20001a, #0b0010);
+      color: #fff;
+      font-family: system-ui, -apple-system, sans-serif;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    .wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+    
+    h2 { 
+      font-size: 1.5rem; color: var(--accent); margin: 30px 0 20px; text-transform: uppercase; 
+      letter-spacing: 2px; text-align: center;
+    }
+
+    /* -------------------------------------- */
+    /* 🆕 1. 3D Image Carousel (New Top Section) */
+    /* -------------------------------------- */
+    .carousel-scene {
+      width: 100%;
+      height: 450px; /* Height for the entire scene */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1200px; /* 3D effect depth */
+      margin: 40px 0;
+    }
+
+    .carousel-ring {
+      position: relative;
+      width: var(--card-size);
+      height: var(--card-size);
+      transform-style: preserve-3d;
+      animation: spin 35s infinite linear; /* Continuous rotation */
+    }
+
+    .carousel-ring:hover { animation-play-state: paused; }
+
+    .carousel-image {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 50%; /* Circular images like in the example */
+      border: 3px solid var(--accent);
+      box-shadow: 0 5px 20px rgba(255, 143, 176, 0.4);
+    }
+    .carousel-image img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* 3D positioning for 8 images (360/8 = 45 degrees) */
+    .carousel-image:nth-child(1) { transform: rotateY(0deg) translateZ(450px) scale(1.1); }
+    .carousel-image:nth-child(2) { transform: rotateY(45deg) translateZ(450px) scale(1.05); }
+    .carousel-image:nth-child(3) { transform: rotateY(90deg) translateZ(450px) scale(1.0); }
+    .carousel-image:nth-child(4) { transform: rotateY(135deg) translateZ(450px) scale(0.95); }
+    .carousel-image:nth-child(5) { transform: rotateY(180deg) translateZ(450px) scale(0.9); }
+    .carousel-image:nth-child(6) { transform: rotateY(225deg) translateZ(450px) scale(0.95); }
+    .carousel-image:nth-child(7) { transform: rotateY(270deg) translateZ(450px) scale(1.0); }
+    .carousel-image:nth-child(8) { transform: rotateY(315deg) translateZ(450px) scale(1.05); }
+
+    @keyframes spin {
+      from { transform: rotateY(0deg); }
+      to { transform: rotateY(360deg); }
+    }
+
+    /* -------------------------------------- */
+    /* 2. Original Video Section (Reverted & Mobile Optimized) */
+    /* -------------------------------------- */
+    .video-section { width: 95%; max-width: 800px; margin: 40px auto; }
+    .video-section video { width: 100%; border-radius: 12px; box-shadow: 0 14px 40px rgba(0,0,0,0.6); }
+
+    /* -------------------------------------- */
+    /* 3. Hover Gallery (Existing & Mobile Optimized) */
+    /* -------------------------------------- */
+    .hover-section { width: 95%; max-width: 1100px; margin: 40px auto; }
+    .gallery-flex { display: flex; gap: 8px; height: 350px; }
+    .gallery-flex div {
+      flex: 1; border-radius: 15px; overflow: hidden; transition: all 0.5s ease;
+      position: relative; border: 1px solid rgba(255,255,255,0.1);
+    }
+    .gallery-flex div:hover { flex: 4; }
+    .gallery-flex img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* -------------------------------------- */
+    /* 4. Infinite Carousel (Existing & Mobile Optimized) */
+    /* -------------------------------------- */
+    .carousel-wrap { width: 100vw; overflow: hidden; background: rgba(0,0,0,0.2); padding: 30px 0; }
+    .scroll-track { display: flex; gap: 15px; animation: scroll 25s linear infinite; }
+    .scroll-track img { width: 180px; height: 250px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
+    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-180px * 8 - 15px * 8)); } }
+    
+    /* -------------------------------------- */
+    /* 5. Snap Scroll (Existing & Mobile Optimized) */
+    /* -------------------------------------- */
+    .snap-container {
+      width: 100vw; overflow-x: scroll; display: flex; gap: 15px;
+      scroll-snap-type: x mandatory; padding: 20px 0;
+    }
+    .snap-item {
+      width: 70vw; height: 40vh; flex-shrink: 0; border-radius: 15px;
+      overflow: hidden; scroll-snap-align: center; border: 2px solid var(--accent);
+    }
+    .snap-item img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* -------------------------------------- */
+    /* 6. Offset Grid (Existing & Mobile Optimized) */
+    /* -------------------------------------- */
+    .offset-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 20px; width: 100%; box-sizing: border-box; max-width: 900px; }
+    .offset-item { border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
+    .offset-item:nth-child(odd) { height: 180px; margin-top: 15px; }
+    .offset-item:nth-child(even) { height: 220px; }
+    .offset-item img { width: 100%; height: 100%; object-fit: cover; }
+    
+    /* Desktop Adjustment */
+    @media (min-width: 768px) {
+      .carousel-scene { height: 600px; }
+      .carousel-ring { transform: scale(1.2); }
+      .carousel-image { width: 180px; height: 180px; }
+      .carousel-image:nth-child(1) { transform: rotateY(0deg) translateZ(550px) scale(1.1); }
+      /* ... (Adjust translateZ for desktop view) ... */
+      .carousel-image:nth-child(8) { transform: rotateY(315deg) translateZ(550px) scale(1.05); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+  <h2>I am here for you.💕</h2>
+  <div class="carousel-scene">
+    <div class="carousel-ring">
+      <div class="carousel-image"><img src="yin1.jpg"></div>
+      <div class="carousel-image"><img src="yin2.jpg"></div>
+      <div class="carousel-image"><img src="yin3.jpg"></div>
+      <div class="carousel-image"><img src="yin4.jpg"></div>
+      <div class="carousel-image"><img src="yin5.jpg"></div>
+      <div class="carousel-image"><img src="yin6.jpg"></div>
+      <div class="carousel-image"><img src="yin7.jpg"></div>
+      <div class="carousel-image"><img src="yin8.jpg"></div>
+    </div>
+  </div>
+  
+  <p class="caption" style="margin-bottom: 20px;"> ♥️For my quee👸♥️</p>
+
+  <h2>Is there a chance for love?😓</h2>
+  <div class="video-section">
+    <video controls playsinline>
+      <source src="yinv.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <h2>An unexpected girl</h2>
+  <div class="hover-section">
+    <div class="gallery-flex">
+      <div><img src="yin9.jpg"></div>
+      <div><img src="yin10.jpg"></div>
+      <div><img src="yin11.jpg"></div>
+      <div><img src="yin12.jpg"></div>
+    </div>
+  </div>
+
+  <h2>♥️ lovely girl ♥️</h2>
+  <div class="carousel-wrap">
+    <div class="scroll-track">
+      <img src="yin1.jpg"><img src="yin2.jpg"><img src="yin3.jpg"><img src="yin4.jpg">
+      <img src="yin5.jpg"><img src="yin6.jpg"><img src="yin7.jpg"><img src="yin8.jpg">
+      <img src="yin9.jpg"><img src="yin10.jpg"><img src="yin11.jpg"><img src="yin12.jpg">
+      <img src="yin13.jpg"><img src="yin14.jpg"><img src="yin15.jpg"><img src="yin16.jpg">
+    </div>
+  </div>
+
+  <h2>The girl is my dream lady</h2>
+  <div class="snap-container">
+    <div class="snap-item"><img src="yin17.jpg"></div>
+    <div class="snap-item"><img src="yin18.jpg"></div>
+    <div class="snap-item"><img src="yin19.jpg"></div>
+    <div class="snap-item"><img src="yin20.jpg"></div>
+  </div>
+
+  <h2>This girl is so beautiful 😍</h2>
+  <div class="offset-grid">
+    <div class="offset-item"><img src="yin1.jpg"></div>
+    <div class="offset-item"><img src="yin2.jpg"></div>
+    <div class="offset-item"><img src="yin3.jpg"></div>
+    <div class="offset-item"><img src="yin4.jpg"></div>
+    <div class="offset-item"><img src="yin5.jpg"></div>
+    <div class="offset-item"><img src="yin6.jpg"></div>
+    <div class="offset-item"><img src="yin7.jpg"></div>
+    <div class="offset-item"><img src="yin8.jpg"></div>
+    <div class="offset-item"><img src="yin19.jpg"></div>
+    <div class="offset-item"><img src="yin20.jpg"></div>
+  </div>
+
+  <p style="color: var(--accent); margin: 40px 0;">For my passion and for you❤️</p>
+</div>
+
+</body>
+</html>
